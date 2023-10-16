@@ -8,7 +8,7 @@ tasks = ["Foo", "Bar", "Baz"]
 # Inside this class I will define all fields I'd like for this field to have.
 # all of the inputs that I'd like the user to prodive.
 class NewTaskForm(forms.Form):
-   task = forms.CharField(label="New Task")
+   task = forms.CharField(label="New Task ")
 
 
 # Create your views here.
