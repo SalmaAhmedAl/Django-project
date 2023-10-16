@@ -1,4 +1,4 @@
-# My First Django Project
+# Django Project
 
 This is my first Django project, which consists of multiple applications. Each application serves a different purpose. Let's dive into the details of each application.
 
