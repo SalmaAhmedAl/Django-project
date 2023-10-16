@@ -9,6 +9,8 @@ tasks = ["Foo", "Bar", "Baz"]
 # all of the inputs that I'd like the user to prodive.
 class NewTaskForm(forms.Form):
    task = forms.CharField(label="New Task ")
+   # Min & Max make client-server validation! The server isn't getting any of this data.
+   priority = forms.IntegerField(label="Priority", min_value=1, max_value=10 )
 
 
 # Create your views here.
