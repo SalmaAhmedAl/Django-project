@@ -2,8 +2,24 @@
 
 {% block body %}
         <h1>Add Task</h1>
-        <form>
-            <input type="text" name="task">
+        <!-- I will send it back to that add URL when I submit the form. -->
+        <!-- We want to don't allow for requests to be forged another website.
+        One strategy that can be used in order to deal with these attacks is to add into form a hidden CSRF token
+        Generated token -->
+        <!-- Django has CSRF validation turnned on by default : Django Middleware refers to ability in Django-->
+
+        <form action="{% url 'tasks:add' %}" method="post">
+
+            <!-- Feature of Django that allows it to make sure that our request,
+            we need to have CSRF validation -->
+            <!-- Add this token to make sure that Django is able to authenticate the validity of this form -->
+            <!-- To make sure that the form came from the web application itself -->
+            {% csrf_token %}
+
+            <!-- Plugin the form here, Django will generate
+            the necessary HTML to make that form work -->
+            
+            {{ form }}
             <input type="submit">
         </form>
         <a href="{% url 'tasks: index' %}">View Tasks</a>
