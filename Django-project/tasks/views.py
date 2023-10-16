@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.urls import reverse
 
 # Global variable that the entire application gonna have access to.
-tasks = []
+# tasks = []
 
 # This class will inherit from forms.Form
 # Inside this class I will define all fields I'd like for this field to have.
@@ -18,8 +18,10 @@ class NewTaskForm(forms.Form):
 
 # Create your views here.
 def index(request):
+     if "tasks" not in request.session:
+         request.session["tasks"] = []
      return render(request, "tasks/index.html", {
-        "tasks" : tasks
+        "tasks" : request.session["tasks"]
      })
 
 def add(request):
@@ -28,7 +30,7 @@ def add(request):
       # Server validation
       if form.is_valid():
          task = form.cleaned_data["task"]
-         tasks.append(task)
+         request.session["tasks"] += [task]
          return HttpResponseRedirect(reverse("tasks:index"))
       else:
          return render(request, "tasks/add.html",{
